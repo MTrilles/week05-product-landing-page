@@ -18,8 +18,18 @@ x-init="
                 activeSection = entry.target.id;
             }
         });
-    }, { threshold: 0.3 });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+    
     document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+
+    // Fallback logic for absolute top and bottom of the page
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < 50) {
+            activeSection = 'home';
+        } else if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
+            activeSection = 'contact';
+        }
+    });
 "
 class="font-['Plus_Jakarta_Sans',sans-serif] sticky top-0 z-50 bg-gradient-to-r from-[#FFF9F2] via-[#F8EADB] to-[#EDD7BF] backdrop-blur-md border-b border-amber-900/10 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,22 +45,27 @@ class="font-['Plus_Jakarta_Sans',sans-serif] sticky top-0 z-50 bg-gradient-to-r 
             <!-- Desktop Navigation Links with Active Page Indicator -->
             <div class="hidden md:flex items-center space-x-1 lg:space-x-3">
                 <a href="#home" 
+                   @click="activeSection = 'home'"
                    :class="activeSection === 'home' ? 'text-orange-600 bg-orange-500/15 shadow-sm font-black' : 'text-stone-800 hover:text-orange-600 hover:bg-orange-500/10'" 
                    class="px-3 lg:px-4 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-full transition-all duration-200">Home</a>
                 
                 <a href="#features" 
+                   @click="activeSection = 'features'"
                    :class="activeSection === 'features' ? 'text-orange-600 bg-orange-500/15 shadow-sm font-black' : 'text-stone-800 hover:text-orange-600 hover:bg-orange-500/10'" 
                    class="px-3 lg:px-4 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-full transition-all duration-200">Why Us</a>
                 
                 <a href="#franchise" 
+                   @click="activeSection = 'franchise'"
                    :class="activeSection === 'franchise' ? 'text-orange-600 bg-orange-500/15 shadow-sm font-black' : 'text-stone-800 hover:text-orange-600 hover:bg-orange-500/10'" 
                    class="px-3 lg:px-4 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-full transition-all duration-200">Franchise</a>
                 
                 <a href="#testimonials" 
+                   @click="activeSection = 'testimonials'"
                    :class="activeSection === 'testimonials' ? 'text-orange-600 bg-orange-500/15 shadow-sm font-black' : 'text-stone-800 hover:text-orange-600 hover:bg-orange-500/10'" 
                    class="px-3 lg:px-4 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-full transition-all duration-200">Reviews</a>
                 
                 <a href="#contact" 
+                   @click="activeSection = 'contact'"
                    :class="activeSection === 'contact' ? 'text-orange-600 bg-orange-500/15 shadow-sm font-black' : 'text-stone-800 hover:text-orange-600 hover:bg-orange-500/10'" 
                    class="px-3 lg:px-4 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-full transition-all duration-200">Contact</a>
             </div>
@@ -84,11 +99,12 @@ class="font-['Plus_Jakarta_Sans',sans-serif] sticky top-0 z-50 bg-gradient-to-r 
 
     <!-- Mobile Navigation Drawer -->
     <div x-show="open" style="display: none;" x-collapse class="md:hidden bg-[#FFF9F2]/98 border-t border-amber-900/10 px-4 pt-4 pb-6 space-y-2 shadow-xl">
-        <a href="#home" @click="open = false" :class="activeSection === 'home' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Home</a>
-        <a href="#features" @click="open = false" :class="activeSection === 'features' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Why Us</a>
-        <a href="#franchise" @click="open = false" :class="activeSection === 'franchise' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Franchise</a>
-        <a href="#testimonials" @click="open = false" :class="activeSection === 'testimonials' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Reviews</a>
-        <a href="#contact" @click="open = false" :class="activeSection === 'contact' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Contact</a>
+        <a href="#home" @click="open = false; activeSection = 'home'" :class="activeSection === 'home' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Home</a>
+        <a href="#features" @click="open = false; activeSection = 'features'" :class="activeSection === 'features' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Why Us</a>
+        <a href="#franchise" @click="open = false; activeSection = 'franchise'" :class="activeSection === 'franchise' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Franchise</a>
+        <a href="#testimonials" @click="open = false; activeSection = 'testimonials'" :class="activeSection === 'testimonials' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Reviews</a>
+        <a href="#contact" @click="open = false; activeSection = 'contact'" :class="activeSection === 'contact' ? 'text-orange-600 bg-orange-500/15 font-black' : 'text-stone-800'" class="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-orange-500/10 hover:text-orange-600 rounded-lg transition">Contact</a>
+        
         <div class="pt-4 border-t border-amber-900/10 flex flex-col gap-3">
             <a href="#login" @click="open = false" class="text-center w-full py-2.5 text-xs font-extrabold uppercase tracking-wider text-stone-800 hover:text-orange-600 transition">Sign In</a>
             <a href="#order" @click="open = false" class="text-center w-full py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-md transition">Order Now</a>

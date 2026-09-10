@@ -397,17 +397,11 @@
                 const cards = document.querySelectorAll('.pricing-card');
                 
                 cards.forEach(card => {
-                    const badge = card.querySelector('.popular-badge');
                     const btn = card.querySelector('.apply-btn');
                     
                     if (card === selectedCard) {
                         card.classList.add('border-orange-500', 'shadow-2xl', 'lg:scale-105', 'z-10');
                         card.classList.remove('border-amber-200', 'shadow-sm');
-                        
-                        if (badge) {
-                            badge.classList.remove('opacity-0', 'pointer-events-none');
-                            badge.classList.add('opacity-100');
-                        }
                         
                         if (btn) {
                             btn.classList.add('bg-orange-600', 'text-white');
@@ -416,11 +410,6 @@
                     } else {
                         card.classList.remove('border-orange-500', 'shadow-2xl', 'lg:scale-105', 'z-10');
                         card.classList.add('border-amber-200', 'shadow-sm');
-                        
-                        if (badge) {
-                            badge.classList.add('opacity-0', 'pointer-events-none');
-                            badge.classList.remove('opacity-100');
-                        }
                         
                         if (btn) {
                             btn.classList.remove('bg-orange-600', 'text-white');

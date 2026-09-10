@@ -3,9 +3,11 @@
 <div onclick="selectPricingCard(this)" class="pricing-card cursor-pointer relative flex flex-col bg-white rounded-[2rem] p-6 sm:p-8 border transition-all duration-300 {{ $isPopular ? 'border-orange-500 shadow-2xl lg:scale-105 z-10' : 'border-amber-200 shadow-sm' }}">
     
     <!-- Most Popular Badge -->
-    <div class="popular-badge absolute top-0 right-0 transform translate-x-1 sm:translate-x-2 -translate-y-1/2 transition-opacity duration-300 {{ $isPopular ? 'opacity-100' : 'opacity-0 pointer-events-none' }}">
+    @if($isPopular)
+    <div class="popular-badge absolute top-0 right-0 transform translate-x-1 sm:translate-x-2 -translate-y-1/2">
         <span class="bg-orange-500 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider py-1 px-3 sm:px-4 rounded-full shadow-md">Most Popular</span>
     </div>
+    @endif
 
     <h3 class="text-xl sm:text-2xl font-black text-stone-900 mb-2 uppercase tracking-wide">{{ $plan }}</h3>
     <p class="text-stone-500 text-xs sm:text-sm mb-4">Estimated Investment</p>
