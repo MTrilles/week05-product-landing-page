@@ -207,7 +207,7 @@
     </section>
 
     <!-- Pricing Section (Franchise Packages) -->
-    <section id="pricing" class="py-20 bg-white">
+    <section id="franchise" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <span class="text-orange-600 font-bold uppercase tracking-wider text-sm">Franchise Opportunities</span>
