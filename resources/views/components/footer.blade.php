@@ -5,7 +5,7 @@
             <!-- Company Info -->
             <div class="space-y-4">
                 <a href="#" class="flex items-center bg-white p-2 rounded-lg inline-block w-max">
-                    <img src="{{ asset('image_07cb2d.png') }}" alt="Minute Burger" class="h-10 w-auto">
+                    <img src="{{ asset('assets/minute-burger-logo.png') }}" alt="Minute Burger" class="h-10 w-auto">
                 </a>
                 <p class="text-sm text-stone-400 mt-4 leading-relaxed">
                     Providing Everyday Happy Time through affordable, delicious, and quality meals since 1982.
