@@ -119,7 +119,7 @@
             
             <!-- Automatic & Manual Carousel -->
             <div id="hero-carousel-container" 
-                 class="w-full relative shadow-2xl rounded-2xl overflow-hidden border-4 border-white bg-amber-100 group">
+                 class="reveal w-full relative shadow-2xl rounded-2xl overflow-hidden border-4 border-white bg-amber-100 group">
                 
                 <!-- Slides Track (Height adapts dynamically to image's native aspect ratio) -->
                 <div id="hero-carousel-track" class="flex transition-transform duration-700 ease-in-out w-full">
@@ -156,7 +156,7 @@
             </div>
 
             <!-- Content Centered Below Banner -->
-            <div class="max-w-3xl space-y-6">
+            <div class="reveal delay-200 max-w-3xl space-y-6">
                 <p class="text-orange-600 font-bold tracking-wider uppercase text-sm">Everyday Happy Time!</p>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-stone-900 leading-tight">
                     Your Favorite <span class="text-orange-500 drop-shadow-sm">Buy 1 Take 1</span> Burgers.

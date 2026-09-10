@@ -1,11 +1,11 @@
 @props(['title', 'description', 'icon'])
 
-<div class="bg-white p-6 rounded-2xl shadow-sm border border-amber-100 hover:shadow-lg hover:border-orange-200 hover:-translate-y-1 transition-all duration-300 text-center">
-    <div class="w-16 h-16 mx-auto inline-flex items-center justify-center rounded-full bg-amber-100 text-orange-500 mb-4">
+<div class="feature-card absolute left-0 right-0 mx-auto w-[320px] sm:w-[380px] h-full bg-gradient-to-br from-white via-amber-50 to-orange-50 p-8 md:p-10 rounded-[2.5rem] shadow-[0_15px_40px_-12px_rgba(0,0,0,0.15)] border border-amber-200/80 transition-all duration-700 ease-out text-center flex flex-col justify-center origin-bottom cursor-pointer select-none">
+    <div class="w-20 h-20 mx-auto inline-flex items-center justify-center rounded-2xl bg-gradient-to-tr from-orange-500 to-amber-400 text-white mb-6 shadow-md transform -rotate-3 transition-transform hover:rotate-0 duration-300">
         {!! $icon !!}
     </div>
-    <h3 class="text-xl font-bold text-stone-900 mb-2">{{ $title }}</h3>
-    <p class="text-stone-600 leading-relaxed">
+    <h3 class="text-2xl font-black text-stone-900 mb-4 tracking-tight">{{ $title }}</h3>
+    <p class="text-stone-600 leading-relaxed text-base md:text-lg font-medium">
         {{ $description }}
     </p>
 </div>
