@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Scroll Animation Styles -->
+    <!-- Scroll Animation & Marquee Styles -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
@@ -19,6 +19,21 @@
 
         .font-serif-title { font-family: 'Playfair Display', serif; }
         .font-sans-body { font-family: 'Montserrat', sans-serif; }
+
+        @keyframes marquee-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .animate-marquee-left {
+            animation: marquee-left 40s linear infinite;
+        }
+        .animate-marquee-right {
+            animation: marquee-right 40s linear infinite;
+        }
     </style>
 
     <!-- Hero Section -->
@@ -156,13 +171,12 @@
         </script>
     </section>
 
-    <!-- Product Showcase (UPDATED) -->
+    <!-- Product Showcase -->
     <section class="py-24 bg-amber-50/60 relative overflow-hidden" id="showcase-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
                 
-                <!-- Left Side: Card Carousel (Enlarged) -->
-                <!-- Changed from max-w-sm to max-w-lg to make the carousel larger -->
+                <!-- Left Side: Card Carousel -->
                 <div class="reveal mb-16 lg:mb-0 relative w-full max-w-lg mx-auto lg:mx-0 group">
                     <div class="overflow-hidden rounded-[2.5rem] bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-stone-100 relative">
                         <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out w-full h-full items-stretch">
@@ -377,7 +391,6 @@
                     const btn = card.querySelector('.apply-btn');
                     
                     if (card === selectedCard) {
-                        // Apply active styling
                         card.classList.add('border-orange-500', 'shadow-2xl', 'scale-105', 'z-10');
                         card.classList.remove('border-amber-200', 'shadow-sm');
                         
@@ -391,7 +404,6 @@
                             btn.classList.remove('bg-transparent', 'text-orange-600');
                         }
                     } else {
-                        // Remove active styling, revert to default
                         card.classList.remove('border-orange-500', 'shadow-2xl', 'scale-105', 'z-10');
                         card.classList.add('border-amber-200', 'shadow-sm');
                         
@@ -411,38 +423,102 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 bg-amber-50/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="reveal text-center max-w-3xl mx-auto mb-16">
-                <span class="text-orange-600 font-bold uppercase tracking-wider text-sm font-sans-body">Success Stories</span>
-                <h2 class="text-3xl lg:text-4xl font-black text-stone-900 mt-2 font-sans-body">What Our Franchisees Say</h2>
+    <section id="testimonials" class="py-24 bg-orange-50 relative overflow-hidden">
+        
+        <!-- Background Looping Images Container -->
+        <div class="absolute inset-0 z-0 flex flex-col justify-center gap-6 overflow-hidden opacity-50 pointer-events-none mix-blend-multiply py-10">
+            
+            <!-- Row 1: Left Marquee -->
+            <div class="flex w-[200%] animate-marquee-left">
+                <div class="flex w-1/2 justify-around items-center space-x-6 px-4">
+                    <img src="{{ asset('assets/pic-1.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-2.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-3.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-1.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="flex w-1/2 justify-around items-center space-x-6 px-4">
+                    <img src="{{ asset('assets/pic-1.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-2.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-3.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-1.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                </div>
             </div>
 
-            <div class="reveal delay-200 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Row 2: Right Marquee -->
+            <div class="flex w-[200%] animate-marquee-right" style="animation-duration: 45s;">
+                <div class="flex w-1/2 justify-around items-center space-x-6 px-4">
+                    <img src="{{ asset('assets/pic-3.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-1.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-2.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-3.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="flex w-1/2 justify-around items-center space-x-6 px-4">
+                    <img src="{{ asset('assets/pic-3.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-1.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-2.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-3.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                </div>
+            </div>
+
+            <!-- Row 3: Left Marquee (Offset variation) -->
+            <div class="flex w-[200%] animate-marquee-left" style="animation-duration: 35s;">
+                <div class="flex w-1/2 justify-around items-center space-x-6 px-4">
+                    <img src="{{ asset('assets/pic-2.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-3.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-1.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-2.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="flex w-1/2 justify-around items-center space-x-6 px-4">
+                    <img src="{{ asset('assets/pic-2.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-3.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-1.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                    <img src="{{ asset('assets/pic-2.png') }}" class="h-32 md:h-48 w-auto rounded-3xl object-cover shadow-sm" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Wrapped the heading text inside a solid white background card -->
+            <div class="reveal text-center max-w-2xl mx-auto mb-16 relative z-10">
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-amber-100 inline-block">
+                    <span class="text-orange-600 font-bold uppercase tracking-wider text-sm font-sans-body block mb-2">Success Stories</span>
+                    <h2 class="text-3xl lg:text-4xl font-black text-stone-900 font-sans-body">What Our Franchisees Say</h2>
+                </div>
+            </div>
+
+            <div class="reveal delay-200 grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <!-- Testimonial 1 -->
                 <x-testimonial-card 
-                    name="Ricardo Santos"
-                    position="Franchisee (Manila)"
-                    review="Investing in Minute Burger was the best decision for my family. The Buy 1 Take 1 model keeps customers coming back non-stop!"
-                    image="https://placehold.co/100x100/f59e0b/ffffff?text=RS"
+                    name="Mr. Lou Penaflor"
+                    position="Franchisee since 2022 <br> with 4 Minute Burger Stores"
+                    review="Minute Burger is a big favorite in our community! Our affordable, delicious, and clean burgers, especially the Buy 1, Take 1 deal, are a hit with families and friends. Since we're open 24/7, we're always ready to satisfy burger cravings, day or night. People love our burgers for their great value and variety and appreciate our friendly service and convenient locations. As franchise owners, we love connecting with the community. Minute Burger supports us in local events and promotions, helping us build strong customer relationships. We enjoy participating in local fiestas, rewarding loyal customers, and listening to feedback to keep improving."
+                    image="https://placehold.co/100x100/f59e0b/ffffff?text=LP"
                 />
+                
+                <!-- Testimonial 2 -->
                 <x-testimonial-card 
-                    name="Maria Clara Cruz"
-                    position="Franchisee (Cebu City)"
-                    review="The system is so easy to manage. The corporate team provided complete support from crew training to site selection."
-                    image="https://placehold.co/100x100/ea580c/ffffff?text=MC"
+                    name="Denny Baldovi"
+                    position="Franchisee since 2023 <br> 1 Minute Burger Store"
+                    review="I chose Minute Burger because it's a stable, recognized brand that offers a solid foundation and growth potential. Franchising with Minute Burger made sense because it comes with an established name, proven marketing, and reliable systems, which reduce the challenges of starting a business from scratch. The initial training was thorough, covering all aspects of management and quality standards, and ongoing support is always available for any questions or issues. The most helpful support has been in marketing—Minute Burger provides well-developed campaigns and materials, making it easier to attract and retain customers. Minute Burger goes above and beyond to make sure we have the tools and support to succeed."
+                    image="https://placehold.co/100x100/ea580c/ffffff?text=DB"
                 />
+                
+                <!-- Testimonial 3 -->
                 <x-testimonial-card 
-                    name="Jonathan Tan"
-                    position="Multi-Unit Owner (Davao)"
-                    review="Fast ROI and reliable supply chain. Even during tough economic times, Minute Burger stays strong and profitable."
-                    image="https://placehold.co/100x100/78350f/ffffff?text=JT"
+                    name="Heinrich P. Apilan"
+                    position="Franchisee since 2021 <br> 8 Minute Burger Stores"
+                    review="Running a proven franchise with strong brand recognition offers financial freedom, flexibility to focus on life's priorities like family, and the opportunity to become your own boss with the franchisor's support. From opening the first store, the goal has always been to expand as much as possible while inspiring future franchisees. With a dedicated R&D team driving continuous product innovation, there is optimism for growing customer loyalty and providing diverse offerings in the future. If you're really up to becoming your own boss, then set aside the doubt, let them(the franchisor) help you, get your hands dirty, and bring it on."
+                    image="https://placehold.co/100x100/78350f/ffffff?text=HA"
                 />
             </div>
         </div>
     </section>
 
     <!-- Call-to-Action Section -->
-    <section class="reveal py-20 bg-gradient-to-r from-orange-600 to-amber-500 text-white">
+    <section class="reveal py-20 bg-gradient-to-r from-orange-600 to-amber-500 text-white relative z-10">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl lg:text-5xl font-black mb-6 font-sans-body">Own Your Minute Burger Branch Today!</h2>
             <p class="text-xl text-amber-100 mb-10 leading-relaxed font-sans-body">
@@ -471,13 +547,11 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add("active");
                     } else {
-                        // This removes the class when the element leaves the viewport,
-                        // forcing the animation to trigger again when scrolling back.
                         entry.target.classList.remove("active");
                     }
                 });
             }, {
-                threshold: 0.15 // Triggers when 15% of the element is visible
+                threshold: 0.15 
             });
 
             reveals.forEach((reveal) => {
