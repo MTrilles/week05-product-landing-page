@@ -324,8 +324,9 @@
 
             <div class="reveal delay-200 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
                 <x-pricing-card 
-                    plan="Express Kiosk" 
+                    plan="I Type" 
                     price="350,000" 
+                    image="{{ asset('assets/I.png') }}"
                     :features="[
                         'Ideal for high foot-traffic spots',
                         'Basic Kitchen Equipment Set',
@@ -336,8 +337,9 @@
                 />
                 
                 <x-pricing-card 
-                    plan="Standard Store" 
+                    plan="L Type" 
                     price="750,000" 
+                    image="{{ asset('assets/L.png') }}"
                     :isPopular="true"
                     :features="[
                         'Full 24/7 Store Layout',
@@ -350,8 +352,9 @@
                 />
 
                 <x-pricing-card 
-                    plan="Drive-Thru / Hub" 
+                    plan="U Type" 
                     price="1,200,000" 
+                    image="{{ asset('assets/U.png') }}"
                     :features="[
                         'High-Volume Commercial Concept',
                         'Multi-Counter & Drive-Thru Ready',
@@ -363,6 +366,48 @@
                 />
             </div>
         </div>
+        
+        <!-- Pricing Card Interaction Script -->
+        <script>
+            function selectPricingCard(selectedCard) {
+                const cards = document.querySelectorAll('.pricing-card');
+                
+                cards.forEach(card => {
+                    const badge = card.querySelector('.popular-badge');
+                    const btn = card.querySelector('.apply-btn');
+                    
+                    if (card === selectedCard) {
+                        // Apply active styling
+                        card.classList.add('border-orange-500', 'shadow-2xl', 'scale-105', 'z-10');
+                        card.classList.remove('border-amber-200', 'shadow-sm');
+                        
+                        if (badge) {
+                            badge.classList.remove('opacity-0', 'pointer-events-none');
+                            badge.classList.add('opacity-100');
+                        }
+                        
+                        if (btn) {
+                            btn.classList.add('bg-orange-600', 'text-white');
+                            btn.classList.remove('bg-transparent', 'text-orange-600');
+                        }
+                    } else {
+                        // Remove active styling, revert to default
+                        card.classList.remove('border-orange-500', 'shadow-2xl', 'scale-105', 'z-10');
+                        card.classList.add('border-amber-200', 'shadow-sm');
+                        
+                        if (badge) {
+                            badge.classList.add('opacity-0', 'pointer-events-none');
+                            badge.classList.remove('opacity-100');
+                        }
+                        
+                        if (btn) {
+                            btn.classList.remove('bg-orange-600', 'text-white');
+                            btn.classList.add('bg-transparent', 'text-orange-600');
+                        }
+                    }
+                });
+            }
+        </script>
     </section>
 
     <!-- Testimonials Section -->
